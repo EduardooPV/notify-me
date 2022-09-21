@@ -10,16 +10,24 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
+  margin-bottom: 20px;
   font-size: 20px;
 `
 
-export const Text = styled.p`
-  margin: 50px;
+export const Author = styled.strong`
+  margin: 40px 0 10px 0;
+  font-size: 18px;
+  text-align: center;
+`
+
+export const Message = styled.p`
+  margin-bottom: 40px;
   font-size: 16px;
   text-align: center;
 `
 
 export const ContainerButtons = styled.div`
+  margin-top: 20px;
   display: flex;
   gap: 20px;
 `

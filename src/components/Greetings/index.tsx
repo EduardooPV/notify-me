@@ -1,25 +1,39 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Notify } from '../../utils/notify'
 import { Button } from '../Button'
-import { Container, Title, Text, ContainerButtons, Copy, Popup } from './styles'
+import { Container, Title, Author, Message, ContainerButtons, Copy, Popup } from './styles'
 import { FiClipboard } from 'react-icons/fi'
 import Happy from '../../../assets/happy.png'
 
-import { Translator, Translate } from 'react-auto-translate'
+interface MessageProps {
+  text: string
+  author: string
+}
 
 export function Greetings() {
-  const [mesage, setMesage] = useState('')
+  const [data, setData] = useState<MessageProps[]>([])
+  const [message, setMessage] = useState({
+    text: '',
+    author: '',
+  })
   const [popup, setPopup] = useState(false)
 
   useEffect(() => {
     fetch('https://type.fit/api/quotes')
-      .then(function (response) {
+      .then(response => {
         return response.json()
       })
-      .then(function (data) {
-        setMesage(data[Math.floor(Math.random() * 1642)].text)
+      .then(data => {
+        setData(data)
+        setMessage(data[Math.floor(Math.random() * 1642)])
       })
   }, [])
+
+  function handleMesage() {
+    setMessage(data[Math.floor(Math.random() * 1642)])
+
+    Notify('Bom dia bebê!', 'Bora de mensagem inspiradora?', Happy)
+  }
 
   setInterval(() => {
     const currentDate = new Date().toLocaleTimeString()
@@ -29,44 +43,24 @@ export function Greetings() {
     }
   }, 1000)
 
-  function handleMesage() {
-    fetch('https://type.fit/api/quotes')
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (data) {
-        setMesage(data[Math.floor(Math.random() * 1642)].text)
-      })
-
-    Notify('Bom dia bebê!', 'Bora de mensagem inspiradora?', Happy)
-  }
-
   async function copyLink() {
-    await navigator.clipboard.writeText(mesage)
+    await navigator.clipboard.writeText(message.text)
     setPopup(true)
 
     setTimeout(() => {
       setPopup(false)
-    }, 5000)
+    }, 2000)
   }
 
   return (
     <Container>
       <Title>Mensagem do dia</Title>
-      <Text>{mesage}</Text>
-      <Translator
-        from="en"
-        to="fr"
-        googleApiKey="AIzaSyBGl2CvY7kX_agwj5ReanIDVmQ1NQ5D8ZU"
-      >
-        <h1>
-          <Translate>Welcome!</Translate>
-        </h1>
-      </Translator>
+      {message.author ? <Author>{message.author}:</Author> : <Author>??</Author>}
+      <Message>{message.text}</Message>
       <ContainerButtons>
         <Button onClick={handleMesage}>Nova mensagem</Button>
         <Copy onClick={copyLink}>
-          <FiClipboard size={20} color="#FFF" />{' '}
+          <FiClipboard size={20} color="#FFF" />
         </Copy>
       </ContainerButtons>
       {popup && (

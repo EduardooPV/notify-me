@@ -45,7 +45,7 @@ npm manifest:
     "license": "MIT",
     "dependencies": {
       "auto-launch": "^5.0.5",
-      "react": "17.0.2",
+      "react": "^18.2.0",
       "react-auto-translate": "^0.0.6",
       "react-dom": "17.0.2",
       "react-hot-loader": "4.13.0",
@@ -8330,13 +8330,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
     integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
   
-  react@17.0.2:
-    version "17.0.2"
-    resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-    integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
+  react@^18.2.0:
+    version "18.2.0"
+    resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
+    integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
     dependencies:
       loose-envify "^1.1.0"
-      object-assign "^4.1.1"
   
   read-pkg-up@^1.0.1:
     version "1.0.1"
